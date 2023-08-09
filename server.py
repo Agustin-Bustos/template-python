@@ -1,27 +1,21 @@
-import psycopg2
+import os
+from flask import Flask, send_from_directory, render_template, redirect
 
+app = Flask(name)
 
-connection_string = "postgres://fl0user:z1iKnXGNSw9e@ep-odd-resonance-87921203.us-east-2.aws.neon.tech:5432/postgres?sslmode=require"
+port = int(os.environ.get("PORT", 5000))
 
-# Intentar establecer la conexión
-try:
-    # Establecer la conexión
-    connection = psycopg2.connect(connection_string)
+@app.route('/static/<path:path>')
+def serve_static(path):
+    return send_from_directory('static', path)
 
-    # Crear un cursor
-    cursor = connection.cursor()
+@app.route('/')
+def home():
+   return render_template('index.html')
 
-    # Realizar operaciones en la base de datos
-    cursor.execute("SELECT * FROM PEPElol;")
-    rows = cursor.fetchall()
+@app.route('/<path:path>')
+def all_routes(path):
+    return redirect('/')
 
-    # Hacer algo con los datos recuperados
-    for row in rows:
-        print(row)
-
-    # Cerrar el cursor y la conexión
-    cursor.close()
-    connection.close()
-
-except psycopg2.Error as e:
-    print("Error:", e)
+if name == "main":
+    app.run(port=port)
