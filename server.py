@@ -1,39 +1,24 @@
-import psycopg2
-import os
-from flask import Flask, send_from_directory, render_template, redirect
+connection_string = "postgres://fl0user:z1iKnXGNSw9e@ep-odd-resonance-87921203.us-east-2.aws.neon.tech:5432/postgres?sslmode=require"
 
+# Intentar establecer la conexión
 try:
-    connection=psycopg2.connect(
-        host='ep-odd-resonance-87921203.us-east-2.aws.neon.tech',
-        user='fl0user',
-        password='z1iKnXGNSw9e',
-        database='postgres'
-        #port='5432'
-    )
-    
-    print("conesion esitosa")
-    
-except Exception as ex:
-    print(ex) 
-    
-    
-    
-    
-app = Flask(__name__)
+    # Establecer la conexión
+    connection = psycopg2.connect(connection_string)
 
-port = int(os.environ.get("PORT", 5000))
+    # Crear un cursor
+    cursor = connection.cursor()
 
-@app.route('/static/<path:path>')
-def serve_static(path):
-    return send_from_directory('static', path)
+    # Realizar operaciones en la base de datos
+    cursor.execute("SELECT * FROM PEPElol;")
+    rows = cursor.fetchall()
 
-@app.route('/')
-def home():
-   return render_template('index.html')
+    # Hacer algo con los datos recuperados
+    for row in rows:
+        print(row)
 
-@app.route('/<path:path>')
-def all_routes(path):
-    return redirect('/')
+    # Cerrar el cursor y la conexión
+    cursor.close()
+    connection.close()
 
-if __name__ == "__main__":
-    app.run(port=port)
+except psycopg2.Error as e:
+    print("Error:", e)
