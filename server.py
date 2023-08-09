@@ -1,3 +1,6 @@
+import psycopg2
+
+
 connection_string = "postgres://fl0user:z1iKnXGNSw9e@ep-odd-resonance-87921203.us-east-2.aws.neon.tech:5432/postgres?sslmode=require"
 
 # Intentar establecer la conexión
