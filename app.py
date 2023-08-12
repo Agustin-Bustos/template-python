@@ -1,7 +1,10 @@
+
 from flask import Flask, render_template
-import psycopg2
+import psycopg2, os
 
 app = Flask(__name__)
+
+port = int(os.environ.get("PORT", 5000))
 
 try:
     connection = psycopg2.connect(
@@ -13,6 +16,7 @@ try:
     print("Conexión exitosa")
 except Exception as ex:
     print(ex)
+
 
 @app.route('/')
 def home():
@@ -35,4 +39,4 @@ def home():
     return render_template('index.html', juegos=juegos)
 
 if __name__ == "__main__":
-    app.run()
+    app.run(port=port)
