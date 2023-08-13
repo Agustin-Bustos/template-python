@@ -7,14 +7,15 @@ app = Flask(__name__)
 
 port = int(os.environ.get("PORT", 5000))
 
-conexion = psycopg2.connect(
-        "postgres://fl0user:cbJHw60QaLkC@ep-green-mouse-73455054.us-east-2.aws.neon.tech:5432/mi-app?sslmode=require&options=endpoint%3Dep-green-mouse-73455054"
-    )
+
 print("conexion realizada")
     
 @app.route('/')
 def home():
-    # Crear un cursor    
+    # Crear un cursor 
+    conexion = psycopg2.connect(
+        "postgres://fl0user:cbJHw60QaLkC@ep-green-mouse-73455054.us-east-2.aws.neon.tech:5432/mi-app?sslmode=require&options=endpoint%3Dep-green-mouse-73455054"
+    )   
     cursor = conexion.cursor()
     
     # Renderizar la plantilla con los resultados
@@ -22,7 +23,9 @@ def home():
 
 @app.route('/notas')
 def notas1():
-    #conexion=psycopg2.connect()
+    conexion = psycopg2.connect(
+        "postgres://fl0user:cbJHw60QaLkC@ep-green-mouse-73455054.us-east-2.aws.neon.tech:5432/mi-app?sslmode=require&options=endpoint%3Dep-green-mouse-73455054"
+    )
     cursor = conexion.cursor()
     cursor.execute("SELECT * FROM juegos")
     notas = cursor.fetchall()
@@ -35,7 +38,9 @@ def nosotros():
 
 @app.route('/notas')
 def notas():
-    #conexion=psycopg2.connect
+    conexion = psycopg2.connect(
+        "postgres://fl0user:cbJHw60QaLkC@ep-green-mouse-73455054.us-east-2.aws.neon.tech:5432/mi-app?sslmode=require&options=endpoint%3Dep-green-mouse-73455054"
+    )
     print(conexion)
     return render_template('sitio/notas.html')
 
@@ -50,7 +55,9 @@ def admin_inicio():
 
 @app.route('/admin/notas')
 def admin_notas():
-    #conexion=psycopg2.connect()
+    conexion = psycopg2.connect(
+        "postgres://fl0user:cbJHw60QaLkC@ep-green-mouse-73455054.us-east-2.aws.neon.tech:5432/mi-app?sslmode=require&options=endpoint%3Dep-green-mouse-73455054"
+    )
     cursor = conexion.cursor()
     cursor.execute("SELECT * FROM juegos")
     notas = cursor.fetchall()
@@ -129,13 +136,17 @@ def admin_notas_guardar():
 def admin_ropas_borrar():
     _Id=request.form['txtId']
     datos=_Id
-    #conexion=psycopg2.connect()
+    conexion = psycopg2.connect(
+        "postgres://fl0user:cbJHw60QaLkC@ep-green-mouse-73455054.us-east-2.aws.neon.tech:5432/mi-app?sslmode=require&options=endpoint%3Dep-green-mouse-73455054"
+    )
     cursor=conexion.cursor()
     cursor.execute("SELECT IMAGEN FROM juegos WHERE id = %s;", (_Id,))
     ropas=cursor.fetchall
     conexion.commit()
     print(ropas)
-    #conexion=psycopg2.connect()
+    conexion = psycopg2.connect(
+        "postgres://fl0user:cbJHw60QaLkC@ep-green-mouse-73455054.us-east-2.aws.neon.tech:5432/mi-app?sslmode=require&options=endpoint%3Dep-green-mouse-73455054"
+    )
     cursor=conexion.cursor()
     cursor.execute(f"DELETE FROM juegos WHERE juegos.id = %s; ", (_Id,) )
     conexion.commit()
