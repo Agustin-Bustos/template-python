@@ -24,7 +24,7 @@ def home():
 def notas1():
     #conexion=psycopg2.connect()
     cursor = conexion.cursor()
-    cursor.execute("SELECT * FROM `juegos`")
+    cursor.execute("SELECT * FROM juegos")
     notas = cursor.fetchall()
     conexion.commit()
     return render_template('sitio/notas.html', lista_notas=notas)
@@ -50,7 +50,7 @@ def admin_inicio():
 
 @app.route('/admin/notas')
 def admin_notas():
-    conexion=psycopg2.connect()
+    #conexion=psycopg2.connect()
     cursor = conexion.cursor()
     cursor.execute("SELECT * FROM juegos")
     notas = cursor.fetchall()
