@@ -6,6 +6,7 @@ app = Flask(__name__)
 
 port = int(os.environ.get("PORT", 5000))
 
+
 @app.route('/')
 def home():
     # Crear un cursor
@@ -14,7 +15,8 @@ def home():
         host='ep-green-mouse-73455054.us-east-2.aws.neon.tech',
         user='fl0user',
         password='cbJHw60QaLkC',
-        database='mi-app'
+        database='mi-app',
+        sslmode='require'
     )
     cursor = connection.cursor()
     
