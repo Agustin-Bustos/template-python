@@ -8,12 +8,13 @@ port = int(os.environ.get("PORT", 5000))
 connection = psycopg2.connect(
         "postgres://fl0user:cbJHw60QaLkC@ep-green-mouse-73455054.us-east-2.aws.neon.tech:5432/mi-app?sslmode=require&options=endpoint%3Dep-green-mouse-73455054"
     )
-
+print("conexion realizada")
+    
+    
+    
 @app.route('/')
 def home():
-    # Crear un cursor
-    print("conexion realizada")
-    
+    # Crear un cursor    
     cursor = connection.cursor()
     
     # Consulta SQL
