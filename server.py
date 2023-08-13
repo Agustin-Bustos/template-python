@@ -12,11 +12,7 @@ def home():
     # Crear un cursor
     print("conexion realizada")
     connection = psycopg2.connect(
-        host='ep-green-mouse-73455054.us-east-2.aws.neon.tech',
-        user='fl0user',
-        password='cbJHw60QaLkC',
-        database='mi-app',
-        sslmode='require'
+        "postgres://fl0user:cbJHw60QaLkC@ep-green-mouse-73455054.us-east-2.aws.neon.tech:5432/mi-app?sslmode=require"
     )
     cursor = connection.cursor()
     
