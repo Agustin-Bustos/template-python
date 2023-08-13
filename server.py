@@ -35,7 +35,7 @@ def nosotros():
 
 @app.route('/notas')
 def notas():
-    conexion=psycopg2.connect
+    #conexion=psycopg2.connect
     print(conexion)
     return render_template('sitio/notas.html')
 
