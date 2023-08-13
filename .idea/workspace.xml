@@ -5,7 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="07a53c98-fcf8-4dfe-897d-b6abad24ac83" name="Changes" comment="a">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/server.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/favicon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/flare-left-500.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/flare-left-800.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/flare-left.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/flare-right-1080.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/flare-right-500.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/flare-right-800.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/flare-right.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/flare-top-1080.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/flare-top-500.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/flare-top-800.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/flare-top.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/logo.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/styles.css" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +73,7 @@
       <workItem from="1691549313437" duration="255000" />
       <workItem from="1691867193778" duration="1850000" />
       <workItem from="1691893618597" duration="95000" />
-      <workItem from="1691893722605" duration="4365000" />
+      <workItem from="1691893722605" duration="4415000" />
     </task>
     <task id="LOCAL-00001" summary="a">
       <option name="closed" value="true" />

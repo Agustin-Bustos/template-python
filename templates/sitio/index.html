@@ -1,0 +1,47 @@
+{% include 'sitio/cabecera.html' %}
+
+Bienvenido 
+
+<style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      color: #8a2be2;
+      font-size: 40px;
+      margin-top: 150px;
+    }
+
+    p {
+      font-size: 20px;
+      margin-top: 20px;
+    }
+  </style>
+<div class="row align-items-md-stretch">
+    <div class="col-md-6">
+        <div
+            class="h-100 p-5 text-black bg-primary border rounded-7">
+            <h1>Diario "El Insano"</h1>
+            <h3><b>Cada día las noticias más insanas</b></h3>
+            <button class="btn Swap the background-color utility and add a `.text-*` color utility to mix up the jumbotron look. Then,
+            mix and match with additional component themes and more." type="button">Suscribirse</button>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div
+            class="h-100 p-5 bg-primary border rounded-3">
+            <h2>Noticias Recientes</h2>
+            <h3><b>Fre Fire gana el goty finalmente</b></h3>
+            <button class="btn Swap the background-color utility and add a `.text-*` color utility to mix up the jumbotron look. Then,
+                mix and match with additional component themes and more." type="button">Like</button>
+        </div>
+    </div>
+</div>
+
+{% include 'sitio/pie.html' %}
