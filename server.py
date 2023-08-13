@@ -98,8 +98,7 @@ def admin_notas_guardar():
     conexion = psycopg2.connect("postgres://fl0user:cbJHw60QaLkC@ep-green-mouse-73455054.us-east-2.aws.neon.tech:5432/mi-app?sslmode=require&options=endpoint%3Dep-green-mouse-73455054")
 
     # Preparar consulta con parámetros
-    sql = """INSERT INTO juegos ( ID, TITULO, SUBTITULO, IMAGEN) 
-             VALUES (DEFAULT, %(TITULO)s, %(SUBTITULO)s, %(IMAGEN)s);"""
+    sql ='INSERT INTO "juegos" ("TITULO", "SUBTITULO", "IMAGEN") VALUES (%s, %s, %s);'
     
     # Manejar caso de archivo nulo
     if archivo:
@@ -109,11 +108,7 @@ def admin_notas_guardar():
       imagen = None
 
     # Ejecutar query    
-    datos = {
-      'titulo': nombre, 
-      'subtitulo': subtitulo,
-      'imagen': imagen
-    }
+    datos =(nombre,subtitulo, archivo.filename)
 
     with conexion:
       with conexion.cursor() as cursor:
@@ -140,15 +135,7 @@ def admin_ropas_borrar():
         "postgres://fl0user:cbJHw60QaLkC@ep-green-mouse-73455054.us-east-2.aws.neon.tech:5432/mi-app?sslmode=require&options=endpoint%3Dep-green-mouse-73455054"
     )
     cursor=conexion.cursor()
-    cursor.execute("SELECT IMAGEN FROM juegos WHERE id = %s;", (_Id,))
-    ropas=cursor.fetchall
-    conexion.commit()
-    print(ropas)
-    conexion = psycopg2.connect(
-        "postgres://fl0user:cbJHw60QaLkC@ep-green-mouse-73455054.us-east-2.aws.neon.tech:5432/mi-app?sslmode=require&options=endpoint%3Dep-green-mouse-73455054"
-    )
-    cursor=conexion.cursor()
-    cursor.execute(f"DELETE FROM juegos WHERE juegos.id = %s; ", (_Id,) )
+    cursor.execute(f'DELETE FROM "juegos" WHERE "juegos"."ID" = {_Id};')
     conexion.commit()
     return redirect('/admin/notas')
 
@@ -157,4 +144,5 @@ def admin_login():
     return render_template('/admin/index.html')
 
 if __name__ == "__main__":
-    app.run(port=port)
+    app.run(port=port, debug=True)
+    
