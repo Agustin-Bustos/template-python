@@ -59,8 +59,8 @@ def admin_notas():
     return render_template('admin/notas.html', lista_notas= notas)
 
 
-@app.route('/admin/notas/guardar', methods=['post'])
-def admin_notas_guardar():
+#@app.route('/admin/notas/guardar', methods=['post'])
+#def admin_notas_guardar():
     _nombre=request.form['txtNombre']
     _archivo=request.files['txtImagen']
     _subtitulo=request.form['Subtitulo']
@@ -77,6 +77,53 @@ def admin_notas_guardar():
     cursor.execute(sql,datos)
     conexion.commit()
     return redirect('/admin/notas')
+
+@app.route('/admin/notas/guardar', methods=['POST'])
+def admin_notas_guardar():
+
+  try:
+    # Obtener datos del formulario
+    nombre = request.form['txtNombre']
+    archivo = request.files['txtImagen'] 
+    subtitulo = request.form['Subtitulo']
+
+    # Conectar a la BD
+    conexion = psycopg2.connect("postgres://fl0user:cbJHw60QaLkC@ep-green-mouse-73455054.us-east-2.aws.neon.tech:5432/mi-app?sslmode=require&options=endpoint%3Dep-green-mouse-73455054")
+
+    # Preparar consulta con parámetros
+    sql = """INSERT INTO juegos (id, titulo, subtitulo, imagen) 
+             VALUES (DEFAULT, %(titulo)s, %(subtitulo)s, %(imagen)s);"""
+    
+    # Manejar caso de archivo nulo
+    if archivo:
+      archivo.save('templates/sitio/img/' + archivo.filename) 
+      imagen = archivo.filename
+    else:
+      imagen = None
+
+    # Ejecutar query    
+    datos = {
+      'titulo': nombre, 
+      'subtitulo': subtitulo,
+      'imagen': imagen
+    }
+
+    with conexion:
+      with conexion.cursor() as cursor:
+        cursor.execute(sql, datos)
+        conexion.commit()
+
+  except Exception as e:
+    # Manejar error    
+    conexion.rollback()
+    print(f'Error al guardar nota: {e}')
+  
+  finally:
+    # Cerrar conexión
+    conexion.close()
+
+  return redirect('/admin/notas')
+
 
 @app.route('/admin/notas/borrar', methods=['post'])
 def admin_ropas_borrar():
