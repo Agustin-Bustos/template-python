@@ -7,17 +7,17 @@ app = Flask(__name__)
 
 port = int(os.environ.get("PORT", 5000))
 
-connection = psycopg2.connect(
+conexion = psycopg2.connect(
         "postgres://fl0user:cbJHw60QaLkC@ep-green-mouse-73455054.us-east-2.aws.neon.tech:5432/mi-app?sslmode=require&options=endpoint%3Dep-green-mouse-73455054"
     )
 print("conexion realizada")
     
-conexion=psycopg2.connect()
+
     
 @app.route('/')
 def home():
     # Crear un cursor    
-    cursor = connection.cursor()
+    cursor = conexion.cursor()
     
     # Consulta SQL
     query = "SELECT * FROM juegos;"
