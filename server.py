@@ -32,7 +32,7 @@ def home():
     # Obtener los resultados
     juegos = cursor.fetchall()
 
-    # Cerrar el curso
+    # Cerrar el cursor
     cursor.close()
 
     # Renderizar la plantilla con los resultados
