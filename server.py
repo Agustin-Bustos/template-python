@@ -98,8 +98,8 @@ def admin_notas_guardar():
     conexion = psycopg2.connect("postgres://fl0user:cbJHw60QaLkC@ep-green-mouse-73455054.us-east-2.aws.neon.tech:5432/mi-app?sslmode=require&options=endpoint%3Dep-green-mouse-73455054")
 
     # Preparar consulta con parámetros
-    sql = """INSERT INTO juegos (id, titulo, subtitulo, imagen) 
-             VALUES (DEFAULT, %(titulo)s, %(subtitulo)s, %(imagen)s);"""
+    sql = """INSERT INTO juegos ( ID, TITULO, SUBTITULO, IMAGEN) 
+             VALUES (DEFAULT, %(TITULO)s, %(SUBTITULO)s, %(IMAGEN)s);"""
     
     # Manejar caso de archivo nulo
     if archivo:
