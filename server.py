@@ -1,13 +1,11 @@
 import psycopg2, os
-from flask import Flask, render_template,  redirect, request
-from flask import send_from_directory
-
+from flask import Flask, render_template, redirect, request, send_from_directory, session
 
 app = Flask(__name__)
 
 port = int(os.environ.get("PORT", 5000))
 
-
+app.secret_key="pepe1234"
 print("conexion realizada")
     
 @app.route('/')
@@ -141,7 +139,20 @@ def admin_ropas_borrar():
 
 @app.route('/admin/logueado', methods=['post'])
 def admin_login():
-    return render_template('/admin/index.html')
+    user=request.form["txtuser"]
+    clave=request.form["txtclave"]
+    if user == "admin" and  clave == "admin":
+        session["login"]=True
+        session["user"]="administrador"
+        return redirect ("/admin/inicio")
+        
+    else:
+        print("Usuario o Clave incorrecta")
+        session["login"]=False
+        return redirect("/login")
+        
+
+    
 
 if __name__ == "__main__":
     app.run(port=port, debug=True)
