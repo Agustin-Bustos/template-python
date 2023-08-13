@@ -29,8 +29,6 @@ def home():
     juegos = cursor.fetchall()
 
     # Cerrar el cursor
-    cursor.close()
-    connection.close()
     
     # Renderizar la plantilla con los resultados
     return render_template('sitio/index.html')
