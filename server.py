@@ -84,13 +84,13 @@ def admin_ropas_borrar():
     datos=_Id
     #conexion=psycopg2.connect()
     cursor=conexion.cursor()
-    cursor.execute("SELECT Imagen FROM juegos WHERE id = {_Id};")
+    cursor.execute("SELECT Imagen FROM juegos WHERE id = %s;", {_Id})
     ropas=cursor.fetchall
     conexion.commit()
     print(ropas)
     #conexion=psycopg2.connect()
     cursor=conexion.cursor()
-    cursor.execute(f"DELETE FROM juegos WHERE juegos.id = {_Id};")
+    cursor.execute(f"DELETE FROM juegos WHERE juegos.id = %s; ", {_Id} )
     conexion.commit()
     return redirect('/admin/notas')
 
