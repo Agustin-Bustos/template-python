@@ -72,7 +72,7 @@ def admin_notas_guardar():
     
     sql = "INSERT INTO `juegos` (`ID`, `TITULO`, `SUBTITULO`, `IMAGEN`) VALUES (NULL, %s, %s, %s);"
     datos = (_nombre,_subtitulo, _archivo.filename)
-    conexion = psycopg2.connect()
+    #conexion = psycopg2.connect()
     cursor = conexion.cursor()
     cursor.execute(sql,datos)
     conexion.commit()
@@ -82,13 +82,13 @@ def admin_notas_guardar():
 def admin_ropas_borrar():
     _Id=request.form['txtId']
     datos=_Id
-    conexion=psycopg2.connect()
+    #conexion=psycopg2.connect()
     cursor=conexion.cursor()
     cursor.execute("SELECT Imagen FROM `juegos`WHERE `id` = %s;",(_Id))
     ropas=cursor.fetchall
     conexion.commit()
     print(ropas)
-    conexion=psycopg2.connect()
+    #conexion=psycopg2.connect()
     cursor=conexion.cursor()
     cursor.execute("DELETE FROM juegos WHERE `juegos`.`id` = %s;",(_Id))
     conexion.commit()
