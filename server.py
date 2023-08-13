@@ -1,4 +1,3 @@
-
 from flask import Flask, render_template
 import psycopg2, os
 
@@ -12,7 +11,7 @@ def home():
     # Crear un cursor
     print("conexion realizada")
     connection = psycopg2.connect(
-        "postgres://fl0user:cbJHw60QaLkC@ep-green-mouse-73455054.us-east-2.aws.neon.tech:5432/mi-app?sslmode=require"
+        "postgres://fl0user:cbJHw60QaLkC@ep-green-mouse-73455054.us-east-2.aws.neon.tech:5432/mi-app?sslmode=require&options=endpoint%3Dep-mute-recipe-123456"
     )
     cursor = connection.cursor()
     
