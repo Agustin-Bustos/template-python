@@ -12,7 +12,7 @@ connection = psycopg2.connect(
     )
 print("conexion realizada")
     
-    
+conexion=psycopg2.connect()
     
 @app.route('/')
 def home():
