@@ -6,24 +6,18 @@ app = Flask(__name__)
 
 port = int(os.environ.get("PORT", 5000))
 
-try:
-    print("inciando base de datos")
+@app.route('/')
+def home():
+    # Crear un cursor
+    print("conexion realizada")
     connection = psycopg2.connect(
         host='ep-green-mouse-73455054.us-east-2.aws.neon.tech',
         user='fl0user',
         password='cbJHw60QaLkC',
         database='mi-app'
     )
-    print("Conexión exitosa")
-except Exception as ex:
-    print(ex)
-
-
-@app.route('/')
-def home():
-    # Crear un cursor
     cursor = connection.cursor()
-
+    
     # Consulta SQL
     query = "SELECT * FROM juegos;"
 
