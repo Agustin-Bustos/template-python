@@ -84,7 +84,7 @@ def admin_ropas_borrar():
     datos=_Id
     #conexion=psycopg2.connect()
     cursor=conexion.cursor()
-    cursor.execute("SELECT Imagen FROM `juegos`WHERE `id` = %s;",(_Id))
+    cursor.execute("SELECT Imagen FROM `juegos` WHERE `id` = %s;",(_Id))
     ropas=cursor.fetchall
     conexion.commit()
     print(ropas)
