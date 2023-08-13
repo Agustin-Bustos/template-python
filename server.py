@@ -26,9 +26,11 @@ def home():
 
     # Cerrar el cursor
     cursor.close()
-
+    connection.close()
+    
     # Renderizar la plantilla con los resultados
     return render_template('index.html', juegos=juegos)
+    
 
 if __name__ == "__main__":
     app.run(port=port)
