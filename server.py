@@ -7,6 +7,7 @@ app = Flask(__name__)
 port = int(os.environ.get("PORT", 5000))
 
 try:
+    print("inciando base de datos")
     connection = psycopg2.connect(
         host='ep-green-mouse-73455054.us-east-2.aws.neon.tech',
         user='fl0user',
