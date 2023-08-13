@@ -29,13 +29,13 @@ def home():
     juegos = cursor.fetchall()
 
     # Cerrar el cursor
-    
+
     # Renderizar la plantilla con los resultados
     return render_template('sitio/index.html')
 
 @app.route('/notas')
 def notas1():
-    conexion=psycopg2.connect()
+    #conexion=psycopg2.connect()
     cursor = conexion.cursor()
     cursor.execute("SELECT * FROM `juegos`")
     notas = cursor.fetchall()
