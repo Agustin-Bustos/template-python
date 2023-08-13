@@ -12,24 +12,11 @@ conexion = psycopg2.connect(
     )
 print("conexion realizada")
     
-
-    
 @app.route('/')
 def home():
     # Crear un cursor    
     cursor = conexion.cursor()
     
-    # Consulta SQL
-    query = "SELECT * FROM juegos;"
-
-    # Ejecutar la consulta
-    cursor.execute(query)
-
-    # Obtener los resultados
-    juegos = cursor.fetchall()
-
-    # Cerrar el cursor
-
     # Renderizar la plantilla con los resultados
     return render_template('sitio/index.html')
 
