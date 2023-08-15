@@ -151,6 +151,67 @@ def admin_login():
         session["login"]=False
         return redirect("/login")
         
+# Agrega esta nueva ruta en tu código
+@app.route('/admin/notas/actualizar/<int:nota_id>', methods=['GET', 'POST'])
+def admin_actualizar_nota(nota_id):
+    if request.method == 'POST':
+        # Obtener datos del formulario de actualización
+        nuevo_nombre = request.form['txtNombre']
+        nuevo_archivo = request.files['txtImagen']
+        nuevo_subtitulo = request.form['Subtitulo']
+
+        try:
+            # Conectar a la BD
+            conexion = psycopg2.connect("postgres://fl0user:cbJHw60QaLkC@ep-green-mouse-73455054.us-east-2.aws.neon.tech:5432/mi-app?sslmode=require&options=endpoint%3Dep-green-mouse-73455054")  # Tu cadena de conexión
+
+            # Consultar la nota existente
+            with conexion.cursor() as cursor:
+                cursor.execute('SELECT * FROM "juegos" WHERE "ID" = %s;', (nota_id,))
+                nota_existente = cursor.fetchone()
+
+                # Actualizar datos si el formulario incluyó un archivo
+                if nuevo_archivo:
+                    nuevo_archivo.save('templates/sitio/img/' + nuevo_archivo.filename)
+                    nuevo_imagen = nuevo_archivo.filename
+                else:
+                    nuevo_imagen = nota_existente[3]
+
+                # Ejecutar consulta de actualización
+                sql = 'UPDATE "juegos" SET "TITULO" = %s, "SUBTITULO" = %s, "IMAGEN" = %s WHERE "ID" = %s;'
+                nuevos_datos = (nuevo_nombre, nuevo_subtitulo, nuevo_imagen, nota_id)
+                cursor.execute(sql, nuevos_datos)
+                conexion.commit()
+
+        except Exception as e:
+            # Manejar error
+            conexion.rollback()
+            print(f'Error al actualizar nota: {e}')
+
+        finally:
+            # Cerrar conexión
+            conexion.close()
+
+        return redirect('/admin/notas')
+
+    else:
+        try:
+            # Conectar a la BD
+            conexion = psycopg2.connect("postgres://fl0user:cbJHw60QaLkC@ep-green-mouse-73455054.us-east-2.aws.neon.tech:5432/mi-app?sslmode=require&options=endpoint%3Dep-green-mouse-73455054")  # Tu cadena de conexión
+
+            # Consultar la nota existente
+            with conexion.cursor() as cursor:
+                cursor.execute('SELECT * FROM "juegos" WHERE "ID" = %s;', (nota_id,))
+                nota_existente = cursor.fetchone()
+
+        except Exception as e:
+            # Manejar error
+            print(f'Error al obtener nota: {e}')
+
+        finally:
+            # Cerrar conexión
+            conexion.close()
+
+        return render_template('admin/actualizar_nota.html', nota=nota_existente)
 
     
 

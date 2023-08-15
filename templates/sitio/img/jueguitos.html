@@ -1,0 +1,70 @@
+{% include 'admin/cabecera.html' %}
+
+seccion administration juegotes
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-4">
+            <div class="card">
+                <div class="card-header">
+                    Header
+                </div>
+                <div class="card-body">
+                    <form action="/admin/jueguitos/guardar" method="post" enctype="multipart/form-data">
+                    <div class="mb-3">
+                      <label for="txtNombre" class="form-label">Titulo</label>
+                      <input type="text"
+                        class="form-control" name="txtNombre" id="txtNombre" aria-describedby="helpId" placeholder="Ingrese el nombre:">
+                    </div>
+                    <div class="mb-3">
+                            <label for="Subtitulo" class="form-label">Subtitulo</label>
+                            <input type="text"
+                              class="form-control" name="Subtitulo" id="Subtitulo" aria-describedby="helpId" placeholder="Escoja un subtitulo:">
+                          </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="txtImagen" class="form-label">Imagen</label>
+                        <input type="file"
+                          class="form-control" name="txtImagen" id="txtImagen" aria-describedby="helpId" placeholder="Seleccione una imagen:">
+                      </div>
+                      
+
+                      <button type="submit" class="btn btn-primary">Agregar</button>  
+                    </form>
+                </div>
+                <div class="card-footer text-muted">
+                    Pro
+                </div>
+            </div>
+        </div>
+        <div class="col-8">
+            <div class="table-responsive">
+                <table class="table table-primary">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Imagen </th>
+                            <th scope="col">Precio</th>
+                            <th scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="">
+                            <td scope="row">1</td>
+                            <td>Nombre</td>
+                            <td>Imagen</td>
+                            <td>Precio</td>
+                            <td>Eliminar</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+        </div>
+        
+    </div>
+</div>
+
+{% include 'admin/pie.html' %}

@@ -66,6 +66,12 @@ seccion administration juegotes
                             </td>
                         </tr>
                         {% endfor %}
+                        {% for nota in lista_notas %}
+                        <!-- ... (mostrar detalles de la nota) ... -->
+                        <a href="{{ url_for('admin_actualizar_nota', nota_id=nota[0]) }}">Actualizar</a>
+                        {% endfor %}
+
+                        
                     </tbody>
                     <tbody>
                     </tbody>

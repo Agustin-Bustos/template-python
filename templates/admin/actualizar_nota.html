@@ -1,0 +1,14 @@
+<!-- admin/actualizar_nota.html -->
+
+<form method="post" enctype="multipart/form-data">
+    <label for="txtNombre">Nombre:</label>
+    <input type="text" id="txtNombre" name="txtNombre" value="{{ nota[1] }}" required>
+    <br>
+    <label for="txtImagen">Imagen:</label>
+    <input type="file" id="txtImagen" name="txtImagen">
+    <br>
+    <label for="Subtitulo">Subtítulo:</label>
+    <input type="text" id="Subtitulo" name="Subtitulo" value="{{ nota[2] }}" required>
+    <br>
+    <input type="submit" value="Actualizar Datos">
+</form>
